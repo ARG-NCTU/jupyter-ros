@@ -1,5 +1,0 @@
-{
-  "load_extensions": {
-    "ros3d-jupyter/extension": true
-  }
-}
