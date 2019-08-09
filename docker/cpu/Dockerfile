@@ -32,6 +32,6 @@ RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
 EXPOSE 8888
 
-COPY /root/jupyter-ros/ros_catkin_entrypoint.sh /
+COPY ./ros_catkin_entrypoint.sh /
 ENTRYPOINT ["/ros_catkin_entrypoint.sh"]
 CMD ["bash"]
