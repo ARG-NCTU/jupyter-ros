@@ -1,9 +1,10 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
-# FROM osrf/ros:kinetic-desktop-xenial
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+#FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+#FROM osrf/ros:kinetic-desktop-xenial
 
 SHELL ["/bin/bash","-c"]
 
-# Prerequisite for ROS 
+# Prerequisite linux tool for ROS 
 RUN apt-get update -qq > /dev/null && apt-get install -y -qq sudo wget lsb-release iputils-ping > /dev/null && \
     apt-get install -y -qq build-essential vim htop sshfs nfs-common git && \
     rm -rf /var/lib/apt/lists/*
@@ -20,6 +21,8 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc && \
     source /root/.bashrc
 
+
+# ROS workspace in container
 ENV CATKIN_WS=/root/catkin_ws
 RUN mkdir -p $CATKIN_WS/src
 WORKDIR $CATKIN_WS/src
@@ -29,6 +32,8 @@ RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
     && cd $CATKIN_WS \
     && catkin_make
 
+
+# Jupyter installation
 RUN apt-get update && apt-get install -y python-pip
 RUN pip install pip==9.0.1
 RUN apt-get -y install curl
@@ -42,8 +47,12 @@ RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN git clone https://github.com/RoboStack/jupyter-ros.git /root/jupyter-ros/
 
+
+# Pytorch installation: cuda 9.0 + python 2.7 + pip
+RUN pip install torch==1.0.1 -f https://download.pytorch.org/whl/cu90/stable torchvision typing
+
 # Pytorch installation: cuda 10.0 + python 2.7 + pip
-RUN pip install --no-cache-dir torch torchvision
+# RUN pip install --no-cache-dir torch torchvision
 
 
 EXPOSE 8888
