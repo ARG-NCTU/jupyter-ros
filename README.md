@@ -1,51 +1,55 @@
 # arg-jupyter-ros
 arg-jupyter-ros is based on https://github.com/RoboStack/jupyter-ros
 
-## Install jupyter-ros via Docker
+## Install and Run jupyter-ros via Docker
 
-#### Method 1. Build docker 
+### CPU:
 
-CPU:
+#### Build docker 
+
 ```bash
     $ cd docker/cpu
     $ docker build -t argnctu/jupyter-ros .      # It takes about 40-60 mins
 ``` 
 
-GPU:
+#### Pull docker image from Dockerhub 
+```bash
+    $ docker pull argnctu/jupyter-ros    # It takes about 20 mins (depend on you network bandwith)
+``` 
+
+#### Run
+The docker container can be run on your local machine or on a remote workstation.
+
+```bash
+    $ docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
+```
+
+### GPU
+
+#### Build docker 
+
 ```bash
     $ cd docker/gpu
     $ docker build -t argnctu/jupyter-ros:gpu .      # It takes about 40-60 mins
 ``` 
 
-#### Method 2. Pull docker image from Dockerhub 
+#### Pull docker image from Dockerhub 
+
 If your nvidia-driver [version >= 410.48](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#binary-compatibility__table-toolkit-driver):
 ```bash
-    $ docker pull argnctu/jupyter-ros:cuda10.0
+    $ docker pull argnctu/jupyter-ros:gpu
 ```
 
-Else:
+#### Run Docker with CUDA support (assume you have installed [nvidia-docker](https://github.com/NVIDIA/nvidia-docker))
 ```bash
-    $ docker pull argnctu/jupyter-ros    # It takes about 20 mins (depend on you network bandwith)
-``` 
-
-
-## Run jupyter notebook
-
-The docker container can be run on your local machine or on a remote workstation.
-
-#### Method 1. Run Docker with CUDA support (assume you have installed [nvidia-docker](https://github.com/NVIDIA/nvidia-docker))
-```bash
-    $ nvidia-docker run --rm -it -p 8888:8888/tcp argnctu/jupyter-ros
+    $ nvidia-docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
     
     # or use new nvidia-docker command:
-    # docker run --gpus all --rm -it -p 8888:8888/tcp argnctu/jupyter-ros
+    # docker run --gpus all --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
 ```
-#### Method 2. Docker (general version: no CUDA support)
-```bash
-    $ docker run --rm -it -p 8888:8888/tcp argnctu/jupyter-ros
-```
----
 
+---
+## Both GPU and CPU
 In the container:
 
 ```bash
@@ -57,19 +61,16 @@ On your local machine:
     Open web browser and input the token to: 
     127.0.0.1:8888
 
-### Basic Usage
-Verify your cuda-support function: type python to enter python-shell, then type:
-```python
-import torch
-print(torch.cuda.is_available())  # It will return True if installation is successful
-exit()
-```
+## Basic Usage CPU
 
 You could directly run the exampe in:
 * notebooks/ROS 3D Grid.ipynb 
 
+### Use jupyter-ros with a ROS bag
 
-## Advanced (with a ROS bag)
+By default we have add the volumn linked:
+* ~/ locally (at workstation)
+* /hosthome in docker container
 
 #### Get some open ROS bags
 
@@ -90,6 +91,14 @@ Or the SubT STIX ROS bags
 #### Run notebooks/ROS Laser Scan.ipynb
 
 
+## Basic Usage GPU
+
+Verify your cuda-support function: type python to enter python-shell, then type:
+```python
+import torch
+print(torch.cuda.is_available())  # It will return True if installation is successful
+exit()
+```
 
 Enjoy!
 
