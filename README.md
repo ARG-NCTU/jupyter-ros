@@ -20,8 +20,14 @@ arg-jupyter-ros is based on https://github.com/RoboStack/jupyter-ros
 #### Run
 The docker container can be run on your local machine or on a remote workstation.
 
+Linux
 ```bash
     $ docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
+```
+
+Mac
+```bash
+    $ docker run --rm -it -p 8888:8888/tcp -v /Users/[username]:/hosthome argnctu/jupyter-ros
 ```
 
 ### GPU
@@ -41,6 +47,8 @@ If your nvidia-driver [version >= 410.48](https://docs.nvidia.com/deploy/cuda-co
 ```
 
 #### Run Docker with CUDA support (assume you have installed [nvidia-docker](https://github.com/NVIDIA/nvidia-docker))
+
+Linux
 ```bash
     $ nvidia-docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
     
