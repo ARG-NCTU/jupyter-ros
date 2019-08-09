@@ -5,11 +5,11 @@ arg-jupyter-ros is based on https://github.com/RoboStack/jupyter-ros
 
 ### Build docker 
 
-    $ docker build -t jupyter-ros:jack .
+    $ docker build -t argnctu/jupyter-ros .
  
 ### Run Docker
 
-    $ docker run --rm -it -p 8888:8888/tcp jupyter-ros:jack
+    $ docker run --rm -it -p 8888:8888/tcp argnctu/jupyter-ros
 
 ### Run jupyter notebook
 
