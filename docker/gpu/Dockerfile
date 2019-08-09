@@ -45,7 +45,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 RUN jupyter labextension install jupyter-ros
 RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
-RUN git clone https://github.com/RoboStack/jupyter-ros.git /root/jupyter-ros/
+RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
 
 # Pytorch installation: cuda 9.0 + python 2.7 + pip
@@ -57,6 +57,6 @@ RUN pip install torch==1.0.1 -f https://download.pytorch.org/whl/cu90/stable tor
 
 EXPOSE 8888
 
-COPY ../../ros_catkin_entrypoint.sh /
+COPY /root/jupyter-ros/ros_catkin_entrypoint.sh /
 ENTRYPOINT ["/ros_catkin_entrypoint.sh"]
 CMD ["bash"]

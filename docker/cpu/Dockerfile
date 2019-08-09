@@ -28,10 +28,10 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 RUN jupyter labextension install jupyter-ros
 RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
-RUN git clone https://github.com/RoboStack/jupyter-ros.git /root/jupyter-ros/
+RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
 EXPOSE 8888
 
-COPY ../../ros_catkin_entrypoint.sh /
+COPY /root/jupyter-ros/ros_catkin_entrypoint.sh /
 ENTRYPOINT ["/ros_catkin_entrypoint.sh"]
 CMD ["bash"]
