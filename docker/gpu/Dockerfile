@@ -57,6 +57,6 @@ RUN pip install torch==1.0.1 -f https://download.pytorch.org/whl/cu90/stable tor
 
 EXPOSE 8888
 
-COPY ./ros_catkin_entrypoint.sh /
+COPY ../../ros_catkin_entrypoint.sh /
 ENTRYPOINT ["/ros_catkin_entrypoint.sh"]
 CMD ["bash"]
