@@ -4,8 +4,17 @@ arg-jupyter-ros is based on https://github.com/RoboStack/jupyter-ros
 ## Install jupyter-ros via Docker
 
 #### Method 1. Build docker 
+
+CPU:
 ```bash
+    $ cd docker/cpu
     $ docker build -t argnctu/jupyter-ros .      # It takes about 40-60 mins
+``` 
+
+GPU:
+```bash
+    $ cd docker/gpu
+    $ docker build -t argnctu/jupyter-ros:gpu .      # It takes about 40-60 mins
 ``` 
 
 #### Method 2. Pull docker image from Dockerhub 
