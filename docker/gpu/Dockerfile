@@ -50,7 +50,7 @@ RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN pip install sidecar
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-sidecar
 
-RUN apt-get install -y ros-${ROS_DISTRO}-teb-local-planner ros-${ROS_DISTRO}-interactive-marker-proxy ros-${ROS_DISTRO}-tf2-webrepublisher ros-${ROS_DISTRO}-rosbridge-server
+RUN apt-get install -y ros-${ROS_DISTRO}-teb-local-planner ros-${ROS_DISTRO}-interactive-marker-proxy ros-${ROS_DISTRO}-tf2-ros ros-${ROS_DISTRO}-rosbridge-server
 
 RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
