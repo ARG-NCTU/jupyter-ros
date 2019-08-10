@@ -135,6 +135,11 @@ Inside the container "jupyter-ros-container" our bags could be accessed at /host
 Let's use byobu to run rosplay.
 
 * Terminal 1 has been running container
+Before running jupyter notebook ROS Laser Scan, we should have other terminals running.
+```bash
+    # cd /root/jupyter-ros/
+    # jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
+```
 
 * Termain 2:
 Need to run the launch file to enable websocket
@@ -143,6 +148,7 @@ Need to run the launch file to enable websocket
 ```
 Inside container
 ```bash
+    # source /root/catkin_ws/devel/setup.bash
     # cd /root/jupyter-ros/notebooks/launch/
     # roslaunch bridge.launch
 ```
