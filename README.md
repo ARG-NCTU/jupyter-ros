@@ -151,9 +151,9 @@ Inside container
 ```
 Inside container
 ```bash
-    # rosbag play /hosthome/arg-rosbags/stata/2011-01-25-06-29-26.bag
+    # rosbag play -l /hosthome/arg-rosbags/stata/2011-01-25-06-29-26.bag
     or
-    # rosbag play /hosthome/arg-rosbags/subt/main_loop/subt_edgar_hires_2019-04-11-13-31-25.bag
+    # rosbag play -l /hosthome/arg-rosbags/subt/main_loop/subt_edgar_hires_2019-04-11-13-31-25.bag
 ```
 This will take a ~20 seconds to start.
 

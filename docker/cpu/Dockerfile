@@ -29,8 +29,11 @@ RUN jupyter labextension install jupyter-ros
 RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
+# install packages for notebook examples
 RUN pip install sidecar
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-sidecar
+
+RUN ros-${ROS_DISTRO}-teb-local-planner ros-${ROS_DISTRO}-interactive-marker-proxy ros-${ROS_DISTRO}-tf2-webrepublisher ros-${ROS_DISTRO}-rosbridge-server
 
 RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
