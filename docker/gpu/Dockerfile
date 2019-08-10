@@ -46,21 +46,21 @@ RUN jupyter labextension install jupyter-ros
 RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
+# Pytorch installation: cuda 9.0 + python 2.7 + pip
+RUN pip install torch==1.0.1 -f https://download.pytorch.org/whl/cu90/stable torchvision typing
+# Pytorch installation: cuda 10.0 + python 2.7 + pip
+# RUN pip install --no-cache-dir torch torchvision
+
 # packages to run examples
 RUN pip install sidecar
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-sidecar
 
 RUN apt-get install -y ros-${ROS_DISTRO}-teb-local-planner ros-${ROS_DISTRO}-interactive-marker-proxy ros-${ROS_DISTRO}-tf2-ros ros-${ROS_DISTRO}-rosbridge-server
+RUN git clone https://github.com/RobotWebTools/tf2_web_republisher /root/catkin_ws/src
+WORKDIR /root/catkin_ws/
+RUN catkin_make
 
 RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
-
-
-# Pytorch installation: cuda 9.0 + python 2.7 + pip
-RUN pip install torch==1.0.1 -f https://download.pytorch.org/whl/cu90/stable torchvision typing
-
-# Pytorch installation: cuda 10.0 + python 2.7 + pip
-# RUN pip install --no-cache-dir torch torchvision
-
 
 EXPOSE 8888
 

@@ -137,12 +137,14 @@ Let's use byobu to run rosplay.
 * Terminal 1 has been running container
 
 * Termain 2:
+Need to run the launch file to enable websocket
 ```bash
     $ docker exec -it jupyter-ros-container bash
 ```
 Inside container
 ```bash
-    # roscore
+    # cd /root/jupyter-ros/notebooks/launch/
+    # roslaunch bridge.launch
 ```
 
 * Terminal 3:
@@ -155,7 +157,7 @@ Inside container
     or
     # rosbag play -l /hosthome/arg-rosbags/subt/main_loop/subt_edgar_hires_2019-04-11-13-31-25.bag
 ```
-This will take a ~20 seconds to start.
+SubT log is 70G and will take a ~20 seconds to start.
 
 * Terminal 4:
 ```bash
@@ -165,6 +167,8 @@ Inside container
 ```bash
     # rostopic list 
 ```
+
+Try to run it at jupyter notebook
 
 
 #### Run notebooks/ROS Laser Scan.ipynb
