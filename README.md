@@ -1,9 +1,25 @@
 # arg-jupyter-ros
-arg-jupyter-ros is based on https://github.com/RoboStack/jupyter-ros
+arg-jupyter-ros is forked from https://github.com/RoboStack/jupyter-ros
 
-## Install and Run jupyter-ros via Docker
+## 0. Goals
 
-### CPU:
+### A. Dockerize jupytor-ros in CPU and GPU (DONE)
+
+### B. Enable live diagnosis the states (pose, features, etc) on a real or simulated robot.
+
+ROS master is always on the real robot or server.
+jupyter-ros is good at visualize 3D data.
+
+Use Cases
+* Introduction to AI course (A* planning real robot tutorial)
+* Visualize how the simulated WAM-V perform from VRX
+
+### C. Analyze ROS bags on a server
+
+
+## 1. Install and Run jupyter-ros via Docker
+
+### 1.1 CPU:
 
 #### Build docker 
 
@@ -30,7 +46,7 @@ Mac
     $ docker run --rm -it -p 8888:8888/tcp -v /Users/[username]:/hosthome argnctu/jupyter-ros
 ```
 
-### GPU
+### 1.2 GPU
 
 #### Build docker 
 
@@ -57,7 +73,7 @@ Linux
 ```
 
 ---
-## Both GPU and CPU
+## 2. Start jupyter-ros (both GPU and CPU)
 In the container:
 
 ```bash
@@ -69,12 +85,12 @@ On your local machine:
     Open web browser and input the token to: 
     127.0.0.1:8888
 
-## Basic Usage CPU
+## 3. Basic Usage CPU
 
 You could directly run the exampe in:
 * notebooks/ROS 3D Grid.ipynb 
 
-### Use jupyter-ros with a ROS bag
+### 3.1 Use jupyter-ros with a ROS bag
 
 By default we have add the volumn linked:
 * ~/ locally (at workstation)
@@ -99,7 +115,7 @@ Or the SubT STIX ROS bags
 #### Run notebooks/ROS Laser Scan.ipynb
 
 
-## Basic Usage GPU
+## 4. Basic Usage GPU
 
 Verify your cuda-support function: type python to enter python-shell, then type:
 ```python
