@@ -51,12 +51,12 @@ The docker container can be run on your local machine or on a remote workstation
 
 Linux
 ```bash
-    $ docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
+    $ docker run --rm -it -p 8888:8888/tcp --name jupyter-ros-container -v /home/[username]:/hosthome argnctu/jupyter-ros
 ```
 
 Mac
 ```bash
-    $ docker run --rm -it -p 8888:8888/tcp -v /Users/[username]:/hosthome argnctu/jupyter-ros
+    $ docker run --rm -it -p 8888:8888/tcp --name jupyter-ros-container -v /Users/[username]:/hosthome argnctu/jupyter-ros
 ```
 
 ### 1.2 GPU
@@ -79,10 +79,10 @@ If your nvidia-driver [version >= 410.48](https://docs.nvidia.com/deploy/cuda-co
 
 Linux
 ```bash
-    $ nvidia-docker run --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
+    $ nvidia-docker run --rm -it -p 8888:8888/tcp --name jupyter-ros-container -v /home/[username]:/hosthome argnctu/jupyter-ros:gpu
     
     # or use new nvidia-docker command:
-    # docker run --gpus all --rm -it -p 8888:8888/tcp -v /home/[username]:/hosthome argnctu/jupyter-ros
+    # docker run --gpus all --rm -it -p 8888:8888/tcp --name jupyter-ros-container -v /home/[username]:/hosthome argnctu/jupyter-ros:gpu
 ```
 
 ---
@@ -90,7 +90,7 @@ Linux
 In the container:
 
 ```bash
-    # cd /
+    # cd /root/jupyter-ros
     $ jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
 ```
 On your local machine:
@@ -109,20 +109,62 @@ By default we have add the volumn linked:
 * ~/ locally (at workstation)
 * /hosthome in docker container
 
+Also we have named our container as --name jupyter-ros-container. We could then use the following command to run inside the container. 
+```bash
+$ docker exec -it jupyter-ros-container <commands>
+```
+
 #### Get some open ROS bags
 
 We suggest the MIT Stata Dataset (https://projects.csail.mit.edu/stata/downloads.php).
 
 ```bash
+    $ cd /hosthome/arg-rosbags/stata
     $ wget http://infinity.csail.mit.edu/data/2011/2011-01-25-06-29-26.bag
 ```
 
 Or the SubT STIX ROS bags
 ```bash
+    $ cd /hosthome/arg-rosbags/subt/smoke_test
     $ wget https://subt-data.s3.amazonaws.com/smoke_test/subt_edgar_hires_2019-04-12-15-52-44.bag
 ```
 
 #### Play a ROS bag and publish topics
+
+Inside the container "jupyter-ros-container" our bags could be accessed at /hosthome/arg-rosbags.
+Let's use byobu to run rosplay.
+
+* Terminal 1 has been running container
+
+* Termain 2:
+```bash
+    $ docker exec -it jupyter-ros-container bash
+```
+Inside container
+```bash
+    # roscore
+```
+
+* Terminal 3:
+```bash
+    $ docker exec -it jupyter-ros-container bash
+```
+Inside container
+```bash
+    # rosbag play /hosthome/arg-rosbags/stata/2011-01-25-06-29-26.bag
+    or
+    # rosbag play /hosthome/arg-rosbags/subt/main_loop/subt_edgar_hires_2019-04-11-13-31-25.bag
+```
+This will take a ~20 seconds to start.
+
+* Terminal 4:
+```bash
+    $ docker exec -it jupyter-ros-container bash
+```
+Inside container
+```bash
+    # rostopic list 
+```
 
 
 #### Run notebooks/ROS Laser Scan.ipynb
