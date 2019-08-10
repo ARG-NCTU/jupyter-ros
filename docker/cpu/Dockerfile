@@ -36,6 +36,11 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-sidecar
 RUN apt-get install -y ros-${ROS_DISTRO}-teb-local-planner ros-${ROS_DISTRO}-interactive-marker-proxy ros-${ROS_DISTRO}-tf2-ros ros-${ROS_DISTRO}-rosbridge-server
 RUN git clone https://github.com/RobotWebTools/tf2_web_republisher /root/catkin_ws/src/tf2_web_republisher/
 
+WORKDIR $CATKIN_WS/src
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
+    && cd $CATKIN_WS \
+    && catkin_make
+
 RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
 EXPOSE 8888
