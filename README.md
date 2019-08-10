@@ -1,21 +1,34 @@
 # arg-jupyter-ros
 arg-jupyter-ros is forked from https://github.com/RoboStack/jupyter-ros
 
+As described in https://blog.jupyter.org/ros-jupyter-b7e82b5e1202, we found the following in particular useful.
+* Works with any web browser — not bound to Linux, and no Qt applications need to be compiled.
+* Doesn’t need to run locally! Applications can run on a server far away, without any manual setup or installation procedure.
+
 ## 0. Goals
+
+Those great features tackle the challenges we have encountered over the years.
+* For education we need to create VirtualBox images installed with ROS for our students. 
+* For virtual competition like VRX, we need to setup monitors in front of the ROS-enabled desktops for students due to the limitation of visualization over ssh, instead of remote developments.
+* For research we have large ROS bags collected in experiments or competitions, and there was no good ways to analyze them properly. The ROS bags may lie down in the unlimited Google drive forever.
+
+Therefore, our goals are as follows:
 
 ### A. Dockerize jupytor-ros in CPU and GPU (DONE)
 
 ### B. Enable live diagnosis the states (pose, features, etc) on a real or simulated robot.
 
-ROS master is always on the real robot or server.
-jupyter-ros is good at visualize 3D data.
+ROS master is always on the real robot, which is ideal when the network connection is unstable between the robot and the laptop. Nevertheless, jupyter-ros is good at visualize 3D data, but still limited for image topics (also about network bandwidth).
 
 Use Cases
 * Introduction to AI course (A* planning real robot tutorial)
 * Visualize how the simulated WAM-V perform from VRX
 
-### C. Analyze ROS bags on a server
+### C. Analyze large ROS bags on a server
 
+Use Cases
+* Many ROS bags may be as large as several GB, which is infeasible to read/analyze on a local machine (e.g., Mac). Now we could store all ROS bags on workstation, and analyze them at local machine.
+* The process of data analysis was usually not easy to replicated, making it hard to reproduce research results. Now jupyter-ros makes it easier.
 
 ## 1. Install and Run jupyter-ros via Docker
 
