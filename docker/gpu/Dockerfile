@@ -45,6 +45,10 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 RUN jupyter labextension install jupyter-ros
 RUN jupyter nbextension enable --py --sys-prefix jupyros
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
+RUN pip install sidecar
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-sidecar
+
 RUN git clone https://github.com/ARG-NCTU/jupyter-ros.git /root/jupyter-ros/
 
 
