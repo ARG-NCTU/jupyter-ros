@@ -103,6 +103,21 @@ On your local machine:
 You could directly run the exampe in:
 * notebooks/ROS 3D Grid.ipynb 
 
+
+## Why Widgets?
+
+### Intro to Widgets
+
+https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20Basics.html
+
+Widgets are eventful python objects that have a representation in the browser, often as a control like a slider, textbox, etc.
+
+### Wedgits vs. rospy
+
+
+
+### Available widgets in jupyros
+
 Available widgets in jupyros/ros_wedgit.py
 * bag_player
 * live_plot
