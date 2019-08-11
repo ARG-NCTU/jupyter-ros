@@ -103,6 +103,35 @@ On your local machine:
 You could directly run the exampe in:
 * notebooks/ROS 3D Grid.ipynb 
 
+Available widgets in jupyros/ros_wedgit.py
+* bag_player
+* live_plot
+* publish
+* img_to_msg
+* widget_dict_to_msg
+
+Available widget in jupyros/pubsub.py
+* subscribe
+
+Available in jupyros/ros3d.py
+* ROSConnection
+* TFClient
+* URDFModel
+* GridModel
+* OccupancyGrid
+* InteractiveMarker
+* Marker
+* PoseArray
+* Pose
+* Polygon
+* Path
+* LaserScan
+* MarkerArrayClient
+* PointCloud
+* Viewer
+* DepthCloud
+* SceneNode
+
 ### 3.1 Use jupyter-ros with a ROS bag
 
 By default we have add the volumn linked:
