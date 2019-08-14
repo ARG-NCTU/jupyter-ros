@@ -1,0 +1,6 @@
+image: /home/ros/map.pgm
+resolution: 0.050000
+origin: [-40.784036, -74.067664, 0.]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
